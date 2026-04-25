@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import { UserContext } from '../context/UserContext'
 
 const Login = () => {
+  const { isAuthenticated, setIsAuthenticated } = useContext(UserContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
@@ -17,6 +19,7 @@ const Login = () => {
         }
       })
       toast.success(response.data.message)
+      setIsAuthenticated(true)
       navigate("/")
     } catch (error) {
       toast.error(error.response.data.message)

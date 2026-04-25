@@ -23,6 +23,7 @@ const Signup = () => {
             setName("")
             setEmail("")
             setPassword("")
+            navigate("/login")
         } catch (error) {
             toast.error(error.response.data.message)
         }

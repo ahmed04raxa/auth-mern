@@ -64,3 +64,14 @@ body {
     color: blue;
     font-weight: bold;
 }
+.btn{
+    height: 100px;
+    width: 200px;
+    font-size: 34px;
+    cursor: pointer;
+    background-color: blue;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}

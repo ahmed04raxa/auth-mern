@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
+import { Navigate } from 'react-router-dom'
 
 const Home = () => {
+  const { isAuthenticated } = useContext(UserContext)
+  if (!isAuthenticated) {
+    return <Navigate to={"/login"} />
+  }
   return (
-    <div>Home</div>
+    <>
+      {
+        isAuthenticated ? <button className='btn'>LOGOUT</button> : ""
+      }
+    </>
+
   )
 }
 

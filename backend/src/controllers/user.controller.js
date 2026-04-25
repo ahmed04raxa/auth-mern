@@ -2,6 +2,16 @@ import asyncHandler from '../utils/asyncHandler.js'
 import ApiError from '../middlewares/errorMiddleware.js'
 import { User } from '../models/user.model.js'
 
+
+const generateToken = (user, message, statusCode, res) => {
+    const token = user.generateJsonWebToken()
+    //console.log(token);
+
+    res.status(statusCode).cookie("userCookie", token, {
+        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000)
+    }).json({ success: true, message, token })
+}
+
 const register = asyncHandler(async (req, res, next) => {
     const { name, email, password } = req.body
     if (!name || !email || !password) {
@@ -38,10 +48,11 @@ const login = asyncHandler(async (req, res, next) => {
     if (!isPasswordMatched) {
         return next(new ApiError("Invalid Credentials!"))
     }
-    return res.status(200).json({
-        success: true,
-        message: "User LoggedIn Successfully!",
-        user
-    })
+    return generateToken(user, "User LoggedIn Successfully!", 200, res)
+    // return res.status(200).json({
+    //     success: true,
+    //     message: "User LoggedIn Successfully!",
+    //     user
+    // })
 })
 export { register, login }

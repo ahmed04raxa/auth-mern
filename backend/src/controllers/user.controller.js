@@ -8,7 +8,8 @@ const generateToken = (user, message, statusCode, res) => {
     //console.log(token);
 
     res.status(statusCode).cookie("userCookie", token, {
-        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000)
+        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+        httpOnly: true,
     }).json({ success: true, message, token })
 }
 
@@ -55,4 +56,15 @@ const login = asyncHandler(async (req, res, next) => {
     //     user
     // })
 })
-export { register, login }
+const logout = asyncHandler(async (req, res, next) => {
+    res.status(200)
+        .clearCookie("userCookie", {
+            httpOnly: true,
+            expires: new Date(Date.now())
+        })
+        .json({
+            success: true,
+            message: "User Logout Successfully"
+        })
+})
+export { register, login, logout }

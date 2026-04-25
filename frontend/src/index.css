@@ -6,3 +6,61 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    height: 400px;
+    width: 400px;
+
+}
+
+.container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container form input {
+    width: 80%;
+    margin-top: 10px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.container form button {
+    margin-top: 20px;
+    width: 80%;
+    height: 40px;
+    background-color: blue;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.container form p {
+    margin-top: 20px;
+}
+
+.container form p a {
+    margin-left: 5px;
+    color: blue;
+    font-weight: bold;
+}

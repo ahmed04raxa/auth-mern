@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 
@@ -8,6 +8,7 @@ const Signup = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,10 +20,14 @@ const Signup = () => {
                     headers: { "Content-Type": "application/json" }
                 })
             toast.success(response.data.message)
+            setName("")
+            setEmail("")
+            setPassword("")
         } catch (error) {
             toast.error(error.response.data.message)
         }
     }
+    
     return (
         <>
             <div className="container">

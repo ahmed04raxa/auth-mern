@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 
 const App = () => {
   return (
